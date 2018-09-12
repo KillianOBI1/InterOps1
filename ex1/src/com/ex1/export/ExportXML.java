@@ -90,7 +90,7 @@ public class ExportXML {
 	//TODO find a way to make more generic
 	public void exportXMLManlyManAttribut(Gestionnaire g) {
 	  try (
-	      Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("ressources/gestionnaire.xml"), "utf-8"))) {
+	      Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("ressources/gestionnaireAttribut.xml"), "utf-8"))) {
 	      writer.write(head);
 	      //node carnet
 	      for(Carnet carnet : g.getCarnets()) {
@@ -121,9 +121,39 @@ public class ExportXML {
       e.printStackTrace();
     }
 	}
-	
+	//TODO find a way to make more generic
 	public void exportXMLManlyManElement(Gestionnaire g) {
-	  //TODO generated method
-	  throw new NotImplementedException();
+	  try (
+        Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("ressources/gestionnaireElement.xml"), "utf-8"))) {
+        writer.write(head);
+        //node carnet
+        for(Carnet carnet : g.getCarnets()) {
+          writer.write("\t<"+carnet.getClass().getSimpleName()+">\n");
+          writer.write("\t\t <id>"+carnet.getId()+"</id>\n");
+          
+          for(Contact contact : carnet.getContacts()) {
+            writer.write("\t\t <contact>\n");
+            writer.write("\t\t\t<id>"+contact.getId()+"</id>\n");
+            writer.write("\t\t\t<lastName>"+contact.getLastName()+"</lastName>\n");
+            writer.write("\t\t\t<firstName>"+contact.getFirstName()+"</firstName>\n");
+            writer.write("\t\t\t<adress>"+contact.getAdress()+"</adress>\n");
+            writer.write("\t\t\t<phoneNumber>"+contact.getPhoneNumber()+"</phoneNumber>\n");
+            writer.write("\t\t </contact>\n");
+          }
+          
+          writer.write("\t</"+carnet.getClass().getSimpleName()+">\n");
+        }
+        writer.write(end);
+        writer.close();
+    } catch (UnsupportedEncodingException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    } catch (FileNotFoundException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    } catch (IOException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
 	}
 }
