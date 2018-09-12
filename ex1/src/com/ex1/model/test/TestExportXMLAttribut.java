@@ -22,7 +22,7 @@ import com.ex1.model.Gestionnaire;
 class TestExportXMLAttribut {
 	
 	Gestionnaire g = new Gestionnaire();
-	File f = new File("D:\\file.xml");
+	File f = new File("E:\\file.xml");
 	@Before
 	void initGestionnaire() {
 		g.addCarnet(new Carnet(0));
