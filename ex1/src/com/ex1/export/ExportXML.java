@@ -32,70 +32,21 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class ExportXML {
   
-  protected final String head = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n<Gestionnaire>\n";
-  protected final String end = "</Gestionnaire>";
+  protected final static String HEAD = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n<Gestionnaire>\n";
+  protected final static String END = "</Gestionnaire>";
 	public ExportXML() {
 		super();
 	}
 	
-	public boolean exportCarnetAttributWithLib(Gestionnaire g) {
-		try {
-			DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
-			DocumentBuilder docBuilder;
-
-			docBuilder = docFactory.newDocumentBuilder();
-			// root elements
-			Document doc = docBuilder.newDocument();
-			Element rootElement = doc.createElement("Gestionnaire");
-			doc.appendChild(rootElement);
-			
-			
-			for(Carnet c : g.getCarnets()) {
-				Element carnet = doc.createElement("Carnet");
-				rootElement.appendChild(carnet);
-				// set attribute to staff element
-				Attr attr = doc.createAttribute("id");
-				attr.setValue(c.getId()+"");
-				carnet.setAttributeNode(attr);
-			}
-			
-			TransformerFactory transformerFactory = TransformerFactory.newInstance();
-			Transformer transformer = transformerFactory.newTransformer();
-			DOMSource source = new DOMSource(doc);
-			StreamResult result = new StreamResult(new File("D:\\file.xml"));
-
-			// Output to console for testing
-			// StreamResult result = new StreamResult(System.out);
-
-			transformer.transform(source, result);
-
-			System.out.println("File saved!");
-			return true;
-		} catch (ParserConfigurationException | TransformerConfigurationException e ) {
-			// TODO Auto-generated catch block
-			
-			System.err.println("Couldn't save");
-			e.printStackTrace();
-			return false;
-		} catch (TransformerException e) {
-			// TODO Auto-generated catch block
-			System.err.println("Couldn't save");
-			e.printStackTrace();
-			return false;
-		}
-
-
-	}
-	
 	//TODO find a way to make more generic
-	public void exportXMLManlyManAttribut(Gestionnaire g) {
+	public static boolean exportXMLManlyManAttribut(Gestionnaire g) {
 	  try (
 	      Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("ressources/gestionnaireAttribut.xml"), "utf-8"))) {
-	      writer.write(head);
+	      writer.write(HEAD);
 	      //node carnet
 	      for(Carnet carnet : g.getCarnets()) {
 	        String carnetNode = "\t<"+carnet.getClass().getSimpleName();
-	        carnetNode += " id="+carnet.getId();
+	        carnetNode += " id=\""+carnet.getId()+"\"";
 	        writer.write(carnetNode+">\n");
 	        for(Contact contact : carnet.getContacts()) {
 	          String contactNode = "\t\t<"+contact.getClass().getSimpleName();
@@ -106,10 +57,11 @@ public class ExportXML {
 	          contactNode += " phoneNumber=\""+contact.getPhoneNumber()+"\"";
 	          writer.write(contactNode+"></"+contact.getClass().getSimpleName()+">\n");
 	        }
-	         writer.write("\t</"+carnet.getClass().getSimpleName()+">\n");
+	         writer.write("</"+carnet.getClass().getSimpleName()+">\n");
 	      }
-	      writer.write(end);
+	      writer.write(END);
 	      writer.close();
+	      return true;
 	  } catch (UnsupportedEncodingException e) {
       // TODO Auto-generated catch block
       e.printStackTrace();
@@ -120,12 +72,13 @@ public class ExportXML {
       // TODO Auto-generated catch block
       e.printStackTrace();
     }
+	  return false;
 	}
 	//TODO find a way to make more generic
-	public void exportXMLManlyManElement(Gestionnaire g) {
+	public boolean exportXMLManlyManElement(Gestionnaire g) {
 	  try (
         Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("ressources/gestionnaireElement.xml"), "utf-8"))) {
-        writer.write(head);
+        writer.write(HEAD);
         //node carnet
         for(Carnet carnet : g.getCarnets()) {
           writer.write("\t<"+carnet.getClass().getSimpleName()+">\n");
@@ -143,8 +96,9 @@ public class ExportXML {
           
           writer.write("\t</"+carnet.getClass().getSimpleName()+">\n");
         }
-        writer.write(end);
+        writer.write(END);
         writer.close();
+        return true;
     } catch (UnsupportedEncodingException e) {
       // TODO Auto-generated catch block
       e.printStackTrace();
@@ -155,5 +109,6 @@ public class ExportXML {
       // TODO Auto-generated catch block
       e.printStackTrace();
     }
+	  return false;
 	}
 }

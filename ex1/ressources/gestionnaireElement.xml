@@ -1,155 +1,54 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <Gestionnaire>
 	<Carnet>
-		 <id>0</id>
-		 <contact>
-			<id>0</id>
-			<lastName>Raikonen</lastName>
-			<firstName>Kimi</firstName>
-			<adress>Finland</adress>
-			<phoneNumber>0202020202</phoneNumber>
-		 </contact>
-		 <contact>
-			<id>1</id>
-			<lastName>Robotas</lastName>
-			<firstName>Valteri</firstName>
-			<adress>Finland</adress>
-			<phoneNumber>0202020202</phoneNumber>
-		 </contact>
-		 <contact>
-			<id>2</id>
-			<lastName>Verstappen</lastName>
-			<firstName>Jos</firstName>
-			<adress>Je frappe ma femme</adress>
-			<phoneNumber>0202020202</phoneNumber>
-		 </contact>
-		 <contact>
-			<id>3</id>
-			<lastName>Flag</lastName>
-			<firstName>Blue</firstName>
-			<adress>Deustchland</adress>
-			<phoneNumber>0202020202</phoneNumber>
-		 </contact>
-		 <contact>
-			<id>4</id>
-			<lastName>Wheel</lastName>
-			<firstName>Steering</firstName>
-			<adress>COME ON</adress>
-			<phoneNumber>0202020202</phoneNumber>
-		 </contact>
-	</Carnet>
-	<Carnet>
 		 <id>1</id>
 		 <contact>
-			<id>0</id>
-			<lastName>Couilles</lastName>
-			<firstName>Gobe</firstName>
-			<adress>Finland</adress>
-			<phoneNumber>0202020202</phoneNumber>
+			<id>10</id>
+			<lastName>Random</lastName>
+			<firstName>Randy</firstName>
+			<adress>Space</adress>
+			<phoneNumber>0658929723</phoneNumber>
 		 </contact>
 		 <contact>
-			<id>1</id>
-			<lastName>de Couilles</lastName>
-			<firstName>test</firstName>
-			<adress>Finland</adress>
-			<phoneNumber>0202020202</phoneNumber>
-		 </contact>
-		 <contact>
-			<id>2</id>
-			<lastName>De Couille</lastName>
-			<firstName>Bleu</firstName>
-			<adress>Je frappe ma femme</adress>
-			<phoneNumber>0202020202</phoneNumber>
-		 </contact>
-		 <contact>
-			<id>3</id>
-			<lastName>Pas</lastName>
-			<firstName>a</firstName>
-			<adress>Deustchland</adress>
-			<phoneNumber>0202020202</phoneNumber>
-		 </contact>
-		 <contact>
-			<id>4</id>
-			<lastName>zz</lastName>
-			<firstName>zz</firstName>
-			<adress>COME ON</adress>
-			<phoneNumber>0202020202</phoneNumber>
+			<id>20</id>
+			<lastName>Aurèle</lastName>
+			<firstName>Mark</firstName>
+			<adress>Rome</adress>
+			<phoneNumber>0658929723</phoneNumber>
 		 </contact>
 	</Carnet>
 	<Carnet>
 		 <id>2</id>
 		 <contact>
-			<id>0</id>
-			<lastName>MO</lastName>
-			<firstName>LE</firstName>
-			<adress>Finland</adress>
-			<phoneNumber>0202020202</phoneNumber>
+			<id>30</id>
+			<lastName>Bradley</lastName>
+			<firstName>Omar</firstName>
+			<adress>USA</adress>
+			<phoneNumber>0658929723</phoneNumber>
 		 </contact>
 		 <contact>
-			<id>1</id>
-			<lastName>Ros</lastName>
-			<firstName>Vi</firstName>
-			<adress>Finland</adress>
-			<phoneNumber>0202020202</phoneNumber>
-		 </contact>
-		 <contact>
-			<id>2</id>
-			<lastName>Vern</lastName>
-			<firstName>Jo</firstName>
-			<adress>Je frappe ma femme</adress>
-			<phoneNumber>0202020202</phoneNumber>
-		 </contact>
-		 <contact>
-			<id>3</id>
-			<lastName>Fla</lastName>
-			<firstName>Blu</firstName>
-			<adress>Deustchland</adress>
-			<phoneNumber>0202020202</phoneNumber>
-		 </contact>
-		 <contact>
-			<id>4</id>
-			<lastName>Whel</lastName>
-			<firstName>Stering</firstName>
-			<adress>COME ON</adress>
-			<phoneNumber>0202020202</phoneNumber>
+			<id>40</id>
+			<lastName>Patton</lastName>
+			<firstName>Georges</firstName>
+			<adress>USA</adress>
+			<phoneNumber>0658929723</phoneNumber>
 		 </contact>
 	</Carnet>
 	<Carnet>
 		 <id>3</id>
 		 <contact>
-			<id>0</id>
-			<lastName>Rn</lastName>
-			<firstName>Ki</firstName>
-			<adress>Finland</adress>
-			<phoneNumber>0202020202</phoneNumber>
+			<id>50</id>
+			<lastName>Skywalker</lastName>
+			<firstName>Anakin</firstName>
+			<adress>Tatooine</adress>
+			<phoneNumber>0658929723</phoneNumber>
 		 </contact>
 		 <contact>
-			<id>1</id>
-			<lastName>Robo</lastName>
-			<firstName>Val</firstName>
-			<adress>Finland</adress>
-			<phoneNumber>0202020202</phoneNumber>
-		 </contact>
-		 <contact>
-			<id>2</id>
-			<lastName>Verst</lastName>
-			<firstName>J</firstName>
-			<adress>Je frappe ma femme</adress>
-			<phoneNumber>0202020202</phoneNumber>
-		 </contact>
-		 <contact>
-			<id>3</id>
-			<lastName>Fl</lastName>
-			<firstName>Bl</firstName>
-			<adress>Deustchland</adress>
-			<phoneNumber>0202020202</phoneNumber>
-		 </contact>
-		 <contact>
-			<id>4</id>
-			<lastName>Wh</lastName>
-			<firstName>St</firstName>
-			<adress>COME ON</adress>
-			<phoneNumber>0202020202</phoneNumber>
+			<id>60</id>
+			<lastName>Kenobi</lastName>
+			<firstName>Obi-wan</firstName>
+			<adress>Corusant</adress>
+			<phoneNumber>0658929723</phoneNumber>
 		 </contact>
 	</Carnet>
 </Gestionnaire>

@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -11,42 +13,96 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.jupiter.api.Test;
+import org.junit.runners.Parameterized.Parameter;
+import org.junit.runners.Parameterized.Parameters;
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import com.ex1.export.ExportXML;
 import com.ex1.model.Carnet;
+import com.ex1.model.Contact;
 import com.ex1.model.Gestionnaire;
 
 class TestExportXMLAttribut {
 	
-	Gestionnaire g = new Gestionnaire();
-	File f = new File("E:\\file.xml");
-	@Before
-	void initGestionnaire() {
-		g.addCarnet(new Carnet(0));
-		g.addCarnet(new Carnet(43));
-		g.addCarnet(new Carnet(50));
-	}
+	@Parameter(0)
+  public Gestionnaire g;
+
+  // creates the test data
+  @Parameters
+  public static Gestionnaire data() {
+      Gestionnaire result = new Gestionnaire();
+      Carnet c = new Carnet(1);
+      c.addContact(new Contact(10, "Random", "Randy", "Space", "0658929723"));
+      c.addContact(new Contact(20, "Aurèle", "Mark", "Rome", "0658929723"));
+      result.addCarnet(c);
+      c = new Carnet(2);
+      c.addContact(new Contact(30, "Bradley", "Omar", "USA", "0658929723"));
+      c.addContact(new Contact(40, "Patton", "Georges", "USA", "0658929723"));
+      result.addCarnet(c);
+      c = new Carnet(3);
+      c.addContact(new Contact(50, "Skywalker", "Anakin", "Tatooine", "0658929723"));
+      c.addContact(new Contact(60, "Kenobi", "Obi-wan", "Corusant", "0658929723"));
+      result.addCarnet(c);
+      return result;
+  }
 
 	@Test
 	void testExport() {
-		
+	  g = TestExportXMLAttribut.data();
 		ExportXML export = new ExportXML();
-		assertTrue(export.exportCarnetAttributWithLib(g));
+		assertTrue(export.exportXMLManlyManAttribut(g));
 		
 	}
 	
 	@Test
 	void testExportInformation() {
+	  int size = 0;
+	  g = TestExportXMLAttribut.data();
+	  File f = new File("ressources/gestionnaireAttribut.xml");
 		final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 	    DocumentBuilder builder;
 		try {
 			builder = factory.newDocumentBuilder();
 		    final Document document= builder.parse(f);
-		    assertTrue(document.getDocumentElement().getTagName().equals("Gestionnaire"));
-		    assertTrue(document.getFirstChild().getNodeName().equals("Carnet"));
+		    assertTrue(document.getDocumentElement().getNodeName().equals(g.getClass().getSimpleName()));
+		    NodeList nList = document.getDocumentElement().getChildNodes();
+		    List<Element> listCarnet = new ArrayList<Element>();
+		    for(int i = 0 ; i < nList.getLength(); i++) {
+		      if(nList.item(i).getNodeType() == Node.ELEMENT_NODE) {
+		        Element element = (Element) nList.item(i);
+		        size++;
+		        listCarnet.add(element);
+		      }
+		    }
+        assertTrue(listCarnet.size() == g.getCarnets().size());
+        //check each carnet id
+        for(int i = 0 ; i < listCarnet.size(); i++) {
+          assertTrue(listCarnet.get(i).getAttribute("id").equals(g.getCarnets().get(i).getId()+""));
+        }
+        //Contact extract and check size
+        for(int i = 0 ; i < listCarnet.size() ; i++) {
+          List<Element> listContact = new ArrayList<Element>();
+          for(int j = 0; j < listCarnet.get(i).getChildNodes().getLength();j++) {
+            if(listCarnet.get(i).getChildNodes().item(j).getNodeType() == Node.ELEMENT_NODE) {
+              Element element = (Element) listCarnet.get(i).getChildNodes().item(j);
+              listContact.add(element);
+            }
+          }
+          assertTrue(g.getCarnets().get(i).getContacts().size() == listContact.size());
+          for(int j = 0; j < listContact.size() ; j++) {
+            assertTrue(listContact.get(j).getAttribute("id").equals(g.getCarnets().get(i).getContacts().get(j).getId()+""));
+            assertTrue(listContact.get(j).getAttribute("lastName").equals(g.getCarnets().get(i).getContacts().get(j).getLastName()));
+            assertTrue(listContact.get(j).getAttribute("firstName").equals(g.getCarnets().get(i).getContacts().get(j).getFirstName()));
+            assertTrue(listContact.get(j).getAttribute("adress").equals(g.getCarnets().get(i).getContacts().get(j).getAdress()));
+            assertTrue(listContact.get(j).getAttribute("phoneNumber").equals(g.getCarnets().get(i).getContacts().get(j).getPhoneNumber()));
+          }
+        }
 		} catch (ParserConfigurationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -58,10 +114,5 @@ class TestExportXMLAttribut {
 			e.printStackTrace();
 		}		
 	}	
-	@After
-	void removeFile() {
-		f.delete();
-		System.out.println("File deleted");
-	}
 
 }
