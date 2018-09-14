@@ -1,0 +1,9 @@
+<!DOCTYPE Gestionnaire SYSTEM "DTDelement.dtd">
+<! ELEMENT Gestionnaire(Carnet)*>
+<! ELEMENT Carnet id+(Contact)*>
+	<!ELEMENT id (#PCDATA)>
+	<!ELEMENT Carnet (id,lastName,firstName,adress,phoneNumber)>
+	<!ELEMENT lastName (#PCDATA)>
+	<!ELEMENT firstName (#PCDATA)>
+	<!ELEMENT adress (#PCDATA)>
+	<!ELEMENT phoneNumber (#PCDATA)>

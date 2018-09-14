@@ -1,0 +1,13 @@
+<!DOCTYPE Gestionnaire SYSTEM "DTDattribut.dtd">
+<! ELEMENT Gestionnaire(Carnet)*>
+<! ELEMENT Carnet(Contact)*>
+	<!ATTLIST Carnet 
+		id CDATA #REQUIRED
+	>
+	<!ATTLIST Carnet
+		id CDATA #REQUIRED
+		lastName CDATA #REQUIRED
+		firstName CDATA #REQUIRED
+		adress CDATA #REQUIRED
+ 		phoneNumber CDATA #REQUIRED
+	>

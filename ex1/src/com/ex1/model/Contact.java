@@ -1,5 +1,8 @@
 package com.ex1.model;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Contact {
 
 	protected int id;
@@ -7,6 +10,7 @@ public class Contact {
 	protected String firstName;
 	protected String adress;
 	protected String phoneNumber;
+	protected Map<String,String> information;
 	
 	public Contact(int id,String lastName,String firstName,String adress,String phoneNumber) {
 		this.id = id;
@@ -14,6 +18,7 @@ public class Contact {
 		this.firstName = firstName;
 		this.adress = adress;
 		this.phoneNumber = phoneNumber;
+		this.information = new HashMap<String,String>();
 	}
 	
 	public int getId() {
@@ -54,5 +59,13 @@ public class Contact {
 
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
+	}
+	
+	public void addInformation(String attribut,String info) {
+		this.information.put(attribut, info);
+	}
+	
+	public Map<String,String> getInformation() {
+		return this.information;
 	}
 }
