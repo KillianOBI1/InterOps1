@@ -33,20 +33,29 @@ class TestExportXMLElement {
   // creates the test data
   @Parameters
   public static Gestionnaire data() {
-      Gestionnaire result = new Gestionnaire();
-      Carnet c = new Carnet(1);
-      c.addContact(new Contact(10, "Random", "Randy", "Space", "0658929723"));
-      c.addContact(new Contact(20, "Aurèle", "Mark", "Rome", "0658929723"));
-      result.addCarnet(c);
-      c = new Carnet(2);
-      c.addContact(new Contact(30, "Bradley", "Omar", "USA", "0658929723"));
-      c.addContact(new Contact(40, "Patton", "Georges", "USA", "0658929723"));
-      result.addCarnet(c);
-      c = new Carnet(3);
-      c.addContact(new Contact(50, "Skywalker", "Anakin", "Tatooine", "0658929723"));
-      c.addContact(new Contact(60, "Kenobi", "Obi-wan", "Corusant", "0658929723"));
-      result.addCarnet(c);
-      return result;
+    Gestionnaire result = new Gestionnaire();
+    Carnet c = new Carnet(1);
+    Contact contact = new Contact(10, "Random", "Randy", "Space", "0658929723");
+    contact.addInformation("Profession", "randomisateur");
+    c.addContact(contact);
+    contact = new Contact(20, "Aurèle", "Mark", "Rome", "0658929723");
+    contact.addInformation("Profession", "Empereur");
+    c.addContact(contact);
+    result.addCarnet(c);
+    c = new Carnet(2);
+    contact = new Contact(30, "Bradley", "Omar", "USA", "0658929723");
+    contact.addInformation("Allégeance", "US Army");
+    c.addContact(contact);
+    contact = new Contact(40, "Patton", "Georges", "USA", "0658929723");
+    contact.addInformation("Arme", "Blindée");
+    c.addContact(contact);
+    result.addCarnet(c);
+    c = new Carnet(3);
+    contact = new Contact(50, "Skywalker", "Anakin", "Tatooine", "0658929723");
+    c.addContact(contact);
+    c.addContact(new Contact(60, "Kenobi", "Obi-wan", "Corusant", "0658929723"));
+    result.addCarnet(c);
+    return result;
   }
 
   @Test
@@ -103,6 +112,17 @@ class TestExportXMLElement {
             assertTrue(((Element) listContact.get(j).getChildNodes()).getElementsByTagName("firstName").item(0).getTextContent().equals(g.getCarnets().get(i).getContacts().get(j).getFirstName()));
             assertTrue(((Element) listContact.get(j).getChildNodes()).getElementsByTagName("adress").item(0).getTextContent().equals(g.getCarnets().get(i).getContacts().get(j).getAdress()));
             assertTrue(((Element) listContact.get(j).getChildNodes()).getElementsByTagName("phoneNumber").item(0).getTextContent().equals(g.getCarnets().get(i).getContacts().get(j).getPhoneNumber()));
+            for(int k = 0; k < listContact.get(j).getChildNodes().getLength(); k++) {
+              if(listContact.get(j).getChildNodes().item(k).getNodeType() == Node.ELEMENT_NODE) {
+                //assertTrue(g.getCarnets().get(i).getContacts().get(j).getInformation().containsKey(listContact.get(j).getChildNodes().item(k).getAttributes()));
+                for(int m = 0; m < listContact.get(j).getChildNodes().item(k).getChildNodes().getLength(); m++) {
+                  if(listContact.get(j).getChildNodes().item(k).getChildNodes().item(m).getNodeType() == Node.ELEMENT_NODE) {
+                    assertTrue(g.getCarnets().get(i).getContacts().get(j).getInformation().containsKey(listContact.get(j).getChildNodes().item(k).getChildNodes().item(m).getNodeName()));
+                    assertTrue(g.getCarnets().get(i).getContacts().get(j).getInformation().containsValue(listContact.get(j).getChildNodes().item(k).getChildNodes().item(m).getTextContent()));
+                  }
+                }
+              }
+            }
           }
         }
     } catch (ParserConfigurationException e) {

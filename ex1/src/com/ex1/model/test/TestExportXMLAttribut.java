@@ -110,6 +110,15 @@ class TestExportXMLAttribut {
             assertTrue(listContact.get(j).getAttribute("firstName").equals(g.getCarnets().get(i).getContacts().get(j).getFirstName()));
             assertTrue(listContact.get(j).getAttribute("adress").equals(g.getCarnets().get(i).getContacts().get(j).getAdress()));
             assertTrue(listContact.get(j).getAttribute("phoneNumber").equals(g.getCarnets().get(i).getContacts().get(j).getPhoneNumber()));
+            for(int k = 0; k < listContact.get(j).getChildNodes().getLength(); k++) {
+              if(listContact.get(j).getChildNodes().item(k).getNodeType() == Node.ELEMENT_NODE) {
+                //assertTrue(g.getCarnets().get(i).getContacts().get(j).getInformation().containsKey(listContact.get(j).getChildNodes().item(k).getAttributes()));
+                for(int m = 0; m < listContact.get(j).getChildNodes().item(k).getAttributes().getLength(); m++) {
+                  assertTrue(g.getCarnets().get(i).getContacts().get(j).getInformation().containsKey(listContact.get(j).getChildNodes().item(k).getAttributes().item(m).getNodeName()));
+                  assertTrue(g.getCarnets().get(i).getContacts().get(j).getInformation().containsValue(listContact.get(j).getChildNodes().item(k).getAttributes().item(m).getNodeValue()));
+                }
+              }
+            }
           }
         }
 		} catch (ParserConfigurationException e) {
