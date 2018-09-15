@@ -1,15 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <Gestionnaire>
 	<Carnet id="1">
-		<Contact id="10" lastName="Random" firstName="Randy" adress="Space" phoneNumber="0658929723"></Contact>
-		<Contact id="20" lastName="Aurèle" firstName="Mark" adress="Rome" phoneNumber="0658929723"></Contact>
+		<Contact id="10" lastName="Random" firstName="Randy" adress="Space" phoneNumber="0658929723">
+			<Information Profession="randomisateur"></Information>
+		</Contact>
+		<Contact id="20" lastName="Aurèle" firstName="Mark" adress="Rome" phoneNumber="0658929723">
+			<Information Profession="Empereur"></Information>
+		</Contact>
 </Carnet>
 	<Carnet id="2">
-		<Contact id="30" lastName="Bradley" firstName="Omar" adress="USA" phoneNumber="0658929723"></Contact>
-		<Contact id="40" lastName="Patton" firstName="Georges" adress="USA" phoneNumber="0658929723"></Contact>
+		<Contact id="30" lastName="Bradley" firstName="Omar" adress="USA" phoneNumber="0658929723">
+			<Information Allégeance="US Army"></Information>
+		</Contact>
+		<Contact id="40" lastName="Patton" firstName="Georges" adress="USA" phoneNumber="0658929723">
+			<Information Arme="Blindée"></Information>
+		</Contact>
 </Carnet>
 	<Carnet id="3">
-		<Contact id="50" lastName="Skywalker" firstName="Anakin" adress="Tatooine" phoneNumber="0658929723"></Contact>
-		<Contact id="60" lastName="Kenobi" firstName="Obi-wan" adress="Corusant" phoneNumber="0658929723"></Contact>
+		<Contact id="50" lastName="Skywalker" firstName="Anakin" adress="Tatooine" phoneNumber="0658929723">
+			<Information></Information>
+		</Contact>
+		<Contact id="60" lastName="Kenobi" firstName="Obi-wan" adress="Corusant" phoneNumber="0658929723">
+			<Information></Information>
+		</Contact>
 </Carnet>
 </Gestionnaire>

@@ -8,6 +8,9 @@
 			<firstName>Randy</firstName>
 			<adress>Space</adress>
 			<phoneNumber>0658929723</phoneNumber>
+			<Information>
+				<Profession>randomisateur</Profession>
+			</Information>
 		 </contact>
 		 <contact>
 			<id>20</id>
@@ -15,6 +18,9 @@
 			<firstName>Mark</firstName>
 			<adress>Rome</adress>
 			<phoneNumber>0658929723</phoneNumber>
+			<Information>
+				<Profession>Empereur</Profession>
+			</Information>
 		 </contact>
 	</Carnet>
 	<Carnet>
@@ -25,6 +31,9 @@
 			<firstName>Omar</firstName>
 			<adress>USA</adress>
 			<phoneNumber>0658929723</phoneNumber>
+			<Information>
+				<Allégeance>US Army</Allégeance>
+			</Information>
 		 </contact>
 		 <contact>
 			<id>40</id>
@@ -32,6 +41,9 @@
 			<firstName>Georges</firstName>
 			<adress>USA</adress>
 			<phoneNumber>0658929723</phoneNumber>
+			<Information>
+				<Arme>Blindée</Arme>
+			</Information>
 		 </contact>
 	</Carnet>
 	<Carnet>
@@ -42,6 +54,8 @@
 			<firstName>Anakin</firstName>
 			<adress>Tatooine</adress>
 			<phoneNumber>0658929723</phoneNumber>
+			<Information>
+			</Information>
 		 </contact>
 		 <contact>
 			<id>60</id>
@@ -49,6 +63,8 @@
 			<firstName>Obi-wan</firstName>
 			<adress>Corusant</adress>
 			<phoneNumber>0658929723</phoneNumber>
+			<Information>
+			</Information>
 		 </contact>
 	</Carnet>
 </Gestionnaire>
