@@ -47,7 +47,7 @@ class TestExportXMLAttribut {
       result.addCarnet(c);
       c = new Carnet(2);
       contact = new Contact(30, "Bradley", "Omar", "USA", "0658929723");
-      contact.addInformation("Allégeance", "US Army");
+      contact.addInformation("Allegeance", "US Army");
       c.addContact(contact);
       contact = new Contact(40, "Patton", "Georges", "USA", "0658929723");
       contact.addInformation("Arme", "Blindée");
@@ -65,7 +65,7 @@ class TestExportXMLAttribut {
 	void testExport() {
 	  g = TestExportXMLAttribut.data();
 		ExportXML export = new ExportXML();
-		assertTrue(export.exportXMLManlyManAttribut(g));
+		assertTrue(ExportXML.exportXMLManlyManAttribut(g));
 		
 	}
 	

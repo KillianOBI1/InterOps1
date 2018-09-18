@@ -1,4 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<!DOCTYPE Gestionnaire [
+<!ELEMENT Gestionnaire (Carnet*)>
+<!ELEMENT Carnet (Contact*)>
+	<!ATTLIST Carnet 
+		id CDATA #REQUIRED
+	>
+<!ELEMENT Contact (Information*)>
+	<!ATTLIST Contact
+		id CDATA #REQUIRED
+		lastName CDATA #REQUIRED
+		firstName CDATA #REQUIRED
+		adress CDATA #REQUIRED
+ 		phoneNumber CDATA #REQUIRED
+	>
+<!ELEMENT Information ANY >
+<!ATTLIST Information (CDATA)* >
+	
+]>
+
+
 <Gestionnaire>
 	<Carnet id="1">
 		<Contact id="10" lastName="Random" firstName="Randy" adress="Space" phoneNumber="0658929723">
@@ -10,7 +31,7 @@
 </Carnet>
 	<Carnet id="2">
 		<Contact id="30" lastName="Bradley" firstName="Omar" adress="USA" phoneNumber="0658929723">
-			<Information Allégeance="US Army"></Information>
+			<Information Allegeance="US Army"></Information>
 		</Contact>
 		<Contact id="40" lastName="Patton" firstName="Georges" adress="USA" phoneNumber="0658929723">
 			<Information Arme="Blindée"></Information>
