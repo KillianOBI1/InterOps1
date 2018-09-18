@@ -2,69 +2,69 @@
 <Gestionnaire>
 	<Carnet>
 		 <id>1</id>
-		 <contact>
+		 <Contact>
 			<id>10</id>
 			<lastName>Random</lastName>
 			<firstName>Randy</firstName>
 			<adress>Space</adress>
 			<phoneNumber>0658929723</phoneNumber>
 			<Information>
-				<Profession>randomisateur</Profession>
+				<key>Profession</key>
+				<value>randomisateur</value>
 			</Information>
-		 </contact>
-		 <contact>
+		 </Contact>
+		 <Contact>
 			<id>20</id>
 			<lastName>Aurèle</lastName>
 			<firstName>Mark</firstName>
 			<adress>Rome</adress>
 			<phoneNumber>0658929723</phoneNumber>
 			<Information>
-				<Profession>Empereur</Profession>
+				<key>Profession</key>
+				<value>Empereur</value>
 			</Information>
-		 </contact>
+		 </Contact>
 	</Carnet>
 	<Carnet>
 		 <id>2</id>
-		 <contact>
+		 <Contact>
 			<id>30</id>
 			<lastName>Bradley</lastName>
 			<firstName>Omar</firstName>
 			<adress>USA</adress>
 			<phoneNumber>0658929723</phoneNumber>
 			<Information>
-				<Allegeance>US Army</Allegeance>
+				<key>Allegeance</key>
+				<value>US Army</value>
 			</Information>
-		 </contact>
-		 <contact>
+		 </Contact>
+		 <Contact>
 			<id>40</id>
 			<lastName>Patton</lastName>
 			<firstName>Georges</firstName>
 			<adress>USA</adress>
 			<phoneNumber>0658929723</phoneNumber>
 			<Information>
-				<Arme>Blindée</Arme>
+				<key>Arme</key>
+				<value>Blindée</value>
 			</Information>
-		 </contact>
+		 </Contact>
 	</Carnet>
 	<Carnet>
 		 <id>3</id>
-		 <contact>
+		 <Contact>
 			<id>50</id>
 			<lastName>Skywalker</lastName>
 			<firstName>Anakin</firstName>
 			<adress>Tatooine</adress>
 			<phoneNumber>0658929723</phoneNumber>
-			<Information>
-			</Information>
-		 </contact>
-		 <contact>
+		 </Contact>
+		 <Contact>
 			<id>60</id>
 			<lastName>Kenobi</lastName>
 			<firstName>Obi-wan</firstName>
 			<adress>Corusant</adress>
 			<phoneNumber>0658929723</phoneNumber>
-			<Information>
-			</Information>
-		 </contact>
+		 </Contact>
 	</Carnet>
 </Gestionnaire>

@@ -100,7 +100,7 @@ class TestExportXMLElement {
         for(int i = 0 ; i < listCarnet.size() ; i++) {
           List<Element> listContact = new ArrayList<Element>();
           for(int j = 0; j < listCarnet.get(i).getChildNodes().getLength();j++) {
-            if(listCarnet.get(i).getChildNodes().item(j).getNodeType() == Node.ELEMENT_NODE && listCarnet.get(i).getChildNodes().item(j).getNodeName().equals("contact")) {
+            if(listCarnet.get(i).getChildNodes().item(j).getNodeType() == Node.ELEMENT_NODE && listCarnet.get(i).getChildNodes().item(j).getNodeName().equals("Contact")) {
               Element element = (Element) listCarnet.get(i).getChildNodes().item(j);
               listContact.add(element);
             }
@@ -117,8 +117,9 @@ class TestExportXMLElement {
                 //assertTrue(g.getCarnets().get(i).getContacts().get(j).getInformation().containsKey(listContact.get(j).getChildNodes().item(k).getAttributes()));
                 for(int m = 0; m < listContact.get(j).getChildNodes().item(k).getChildNodes().getLength(); m++) {
                   if(listContact.get(j).getChildNodes().item(k).getChildNodes().item(m).getNodeType() == Node.ELEMENT_NODE) {
-                    assertTrue(g.getCarnets().get(i).getContacts().get(j).getInformation().containsKey(listContact.get(j).getChildNodes().item(k).getChildNodes().item(m).getNodeName()));
-                    assertTrue(g.getCarnets().get(i).getContacts().get(j).getInformation().containsValue(listContact.get(j).getChildNodes().item(k).getChildNodes().item(m).getTextContent()));
+                    assertTrue(g.getCarnets().get(i).getContacts().get(j).getInformation().containsKey(listContact.get(j).getChildNodes().item(k).getChildNodes().item(1).getTextContent()));
+                    assertTrue(g.getCarnets().get(i).getContacts().get(j).getInformation().containsValue(listContact.get(j).getChildNodes().item(k).getChildNodes().item(3).getTextContent()));
+                    break;
                   }
                 }
               }

@@ -113,9 +113,12 @@ class TestExportXMLAttribut {
             for(int k = 0; k < listContact.get(j).getChildNodes().getLength(); k++) {
               if(listContact.get(j).getChildNodes().item(k).getNodeType() == Node.ELEMENT_NODE) {
                 //assertTrue(g.getCarnets().get(i).getContacts().get(j).getInformation().containsKey(listContact.get(j).getChildNodes().item(k).getAttributes()));
-                for(int m = 0; m < listContact.get(j).getChildNodes().item(k).getAttributes().getLength(); m++) {
-                  assertTrue(g.getCarnets().get(i).getContacts().get(j).getInformation().containsKey(listContact.get(j).getChildNodes().item(k).getAttributes().item(m).getNodeName()));
-                  assertTrue(g.getCarnets().get(i).getContacts().get(j).getInformation().containsValue(listContact.get(j).getChildNodes().item(k).getAttributes().item(m).getNodeValue()));
+                for(int m = 0; m < listContact.get(j).getChildNodes().item(k).getChildNodes().getLength(); m++) {
+                  if(listContact.get(j).getChildNodes().item(k).getChildNodes().item(m).getNodeType() == Node.ELEMENT_NODE) {
+                    assertTrue(g.getCarnets().get(i).getContacts().get(j).getInformation().containsKey(listContact.get(j).getChildNodes().item(k).getChildNodes().item(1).getTextContent()));
+                    assertTrue(g.getCarnets().get(i).getContacts().get(j).getInformation().containsValue(listContact.get(j).getChildNodes().item(k).getChildNodes().item(3).getTextContent()));
+                    break;
+                  }
                 }
               }
             }

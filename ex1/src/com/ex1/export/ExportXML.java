@@ -56,11 +56,12 @@ public class ExportXML {
 	          contactNode += " adress=\""+contact.getAdress()+"\"";
 	          contactNode += " phoneNumber=\""+contact.getPhoneNumber()+"\"";
 	          writer.write(contactNode+">\n");
-	          String info = "";
 	          for(String key : contact.getInformation().keySet()) {
-	            info += " "+key+"=\""+contact.getInformation().get(key)+"\"";
-	          }
-	          writer.write("\t\t\t<Information"+info+"></Information>\n");
+              writer.write("\t\t\t<Information>\n");
+              writer.write("\t\t\t\t<key>"+key+"</key>\n");
+              writer.write("\t\t\t\t<value>"+contact.getInformation().get(key)+"</value>\n");
+              writer.write("\t\t\t</Information>\n");
+            }
 	          writer.write("\t\t</"+contact.getClass().getSimpleName()+">\n");
 	        }
 	         writer.write("</"+carnet.getClass().getSimpleName()+">\n");
@@ -91,18 +92,21 @@ public class ExportXML {
           writer.write("\t\t <id>"+carnet.getId()+"</id>\n");
           
           for(Contact contact : carnet.getContacts()) {
-            writer.write("\t\t <contact>\n");
+            writer.write("\t\t <Contact>\n");
             writer.write("\t\t\t<id>"+contact.getId()+"</id>\n");
             writer.write("\t\t\t<lastName>"+contact.getLastName()+"</lastName>\n");
             writer.write("\t\t\t<firstName>"+contact.getFirstName()+"</firstName>\n");
             writer.write("\t\t\t<adress>"+contact.getAdress()+"</adress>\n");
             writer.write("\t\t\t<phoneNumber>"+contact.getPhoneNumber()+"</phoneNumber>\n");
-            writer.write("\t\t\t<Information>\n");
+           
             for(String key : contact.getInformation().keySet()) {
-              writer.write("\t\t\t\t<"+key+">"+contact.getInformation().get(key)+"</"+key+">\n");
+              writer.write("\t\t\t<Information>\n");
+              writer.write("\t\t\t\t<key>"+key+"</key>\n");
+              writer.write("\t\t\t\t<value>"+contact.getInformation().get(key)+"</value>\n");
+              writer.write("\t\t\t</Information>\n");
             }
-            writer.write("\t\t\t</Information>\n");
-            writer.write("\t\t </contact>\n");
+            
+            writer.write("\t\t </Contact>\n");
           }
           
           writer.write("\t</"+carnet.getClass().getSimpleName()+">\n");

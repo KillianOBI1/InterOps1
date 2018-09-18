@@ -13,7 +13,7 @@
 		adress CDATA #REQUIRED
  		phoneNumber CDATA #REQUIRED
 	>
-<!ELEMENT Information ANY >
-<!ATTLIST Information (CDATA)* >
-	
+<!ELEMENT Information (key,value)>
+	<!ELEMENT key (#PCDATA)>
+	<!ELEMENT value (#PCDATA)>
 ]>
