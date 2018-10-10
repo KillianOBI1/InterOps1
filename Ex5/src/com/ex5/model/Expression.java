@@ -1,5 +1,7 @@
 package com.ex5.model;
 
-public abstract class Expression {
+import com.ex5.model.unaire.IntExpression;
 
+public abstract class Expression {
+  abstract public IntExpression getValue();
 }
