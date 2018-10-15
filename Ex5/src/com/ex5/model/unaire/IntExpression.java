@@ -1,5 +1,7 @@
 package com.ex5.model.unaire;
 
+import com.ex5.visitor.Visitor;
+
 public class IntExpression extends ExpressionUnaire {
     int value;
 	
@@ -18,6 +20,15 @@ public class IntExpression extends ExpressionUnaire {
 	@Override
 	public IntExpression getValue() {
 		return this;
+	}
+
+	@Override
+	public void accept(Visitor v) {
+		v.visitInt(this);
+	}
+	@Override
+	public String toString() {
+		return "IntExpression [value=" + value + "]";
 	}
 
 }

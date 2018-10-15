@@ -3,6 +3,7 @@ package com.ex5.model.binaire;
 import com.ex5.model.Expression;
 import com.ex5.model.unaire.ExpressionUnaire;
 import com.ex5.model.unaire.IntExpression;
+import com.ex5.visitor.Visitor;
 
 public class MultExpression extends ExpressionBinaire {
     
@@ -37,5 +38,15 @@ public class MultExpression extends ExpressionBinaire {
 	@Override
 	public IntExpression getValue() {
 		return this.compute(opLeft, opRight);
+	}
+
+	@Override
+	public void accept(Visitor v) {
+		v.visitMult(this);
+	}
+
+	@Override
+	public String toString() {
+		return "MultExpression [opLeft=" + opLeft + ", opRight=" + opRight + "]";
 	}
 }
