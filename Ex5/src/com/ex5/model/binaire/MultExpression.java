@@ -15,7 +15,7 @@ public class MultExpression extends ExpressionBinaire {
 	public IntExpression compute(Expression opLeft, Expression opRight) {
 		IntExpression result = new IntExpression();
 		if(opLeft instanceof IntExpression && opRight instanceof IntExpression) {
-			result.setInt(opLeft.getValue().getInt()*opRight.getValue().getInt());
+			result.setInt(((IntExpression) opLeft).getInt()*((IntExpression) opRight).getInt());
 		} else {
 			IntExpression temp = new IntExpression();
 			if (opLeft instanceof ExpressionBinaire) {
@@ -35,10 +35,6 @@ public class MultExpression extends ExpressionBinaire {
 		return result;
 	}
 
-	@Override
-	public IntExpression getValue() {
-		return this.compute(opLeft, opRight);
-	}
 
 	@Override
 	public void accept(Visitor v) {

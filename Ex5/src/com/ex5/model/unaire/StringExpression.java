@@ -10,10 +10,4 @@ public class StringExpression extends ExpressionUnaire {
 
 	}
 
-	@Override
-	public IntExpression getValue() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }

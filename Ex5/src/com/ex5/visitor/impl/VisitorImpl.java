@@ -20,13 +20,13 @@ public class VisitorImpl implements Visitor {
 
 	@Override
 	public void visitMult(MultExpression e) {
-		this.result = (e.opLeft.getValue().getInt() * e.opRight.getValue().getInt())+"";
+		this.result = (((IntExpression) e.opLeft).getInt() * ((IntExpression) e.opRight).getInt())+"";
 		System.out.println(e.toString());	
 	}
 
 	@Override
 	public void visitPlus(PlusExpression e) {
-		this.result = (e.opLeft.getValue().getInt() + e.opRight.getValue().getInt())+"";
+		this.result = (((IntExpression) e.opLeft).getInt() + ((IntExpression) e.opRight).getInt())+"";
 		System.out.println(e.toString());
 	}
 	

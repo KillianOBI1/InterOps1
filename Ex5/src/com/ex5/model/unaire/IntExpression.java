@@ -26,9 +26,4 @@ public class IntExpression extends ExpressionUnaire {
 		return "IntExpression [value=" + value + "]";
 	}
 
-	@Override
-	public IntExpression getValue() {
-		return this;
-	}
-
 }

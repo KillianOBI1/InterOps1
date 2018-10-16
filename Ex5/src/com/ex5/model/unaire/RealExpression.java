@@ -9,11 +9,4 @@ public class RealExpression extends ExpressionUnaire {
 		// TODO Auto-generated method stub
 
 	}
-
-	@Override
-	public IntExpression getValue() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }
