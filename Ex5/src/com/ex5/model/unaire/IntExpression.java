@@ -8,18 +8,13 @@ public class IntExpression extends ExpressionUnaire {
 	public IntExpression() {
 		super();
 	}
-	@Override
+
 	public int getInt() {
 		return this.value;
 	}
 
-	@Override
 	public void setInt(int value) {
       this.value = value;
-	}
-	@Override
-	public IntExpression getValue() {
-		return this;
 	}
 
 	@Override
@@ -29,6 +24,11 @@ public class IntExpression extends ExpressionUnaire {
 	@Override
 	public String toString() {
 		return "IntExpression [value=" + value + "]";
+	}
+
+	@Override
+	public IntExpression getValue() {
+		return this;
 	}
 
 }

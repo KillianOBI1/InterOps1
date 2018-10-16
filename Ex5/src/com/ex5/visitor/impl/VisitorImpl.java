@@ -11,6 +11,7 @@ public class VisitorImpl implements Visitor {
     public VisitorImpl() {
     	
     }
+    
 	@Override
 	public void visitInt(IntExpression e) {
 		this.result = e.getInt()+"";
@@ -20,8 +21,7 @@ public class VisitorImpl implements Visitor {
 	@Override
 	public void visitMult(MultExpression e) {
 		this.result = (e.opLeft.getValue().getInt() * e.opRight.getValue().getInt())+"";
-		System.out.println(e.toString());
-		
+		System.out.println(e.toString());	
 	}
 
 	@Override
