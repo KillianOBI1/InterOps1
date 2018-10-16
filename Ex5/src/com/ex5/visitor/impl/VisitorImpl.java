@@ -3,6 +3,8 @@ package com.ex5.visitor.impl;
 import com.ex5.model.binaire.MultExpression;
 import com.ex5.model.binaire.PlusExpression;
 import com.ex5.model.unaire.IntExpression;
+import com.ex5.model.unaire.RealExpression;
+import com.ex5.model.unaire.StringExpression;
 import com.ex5.visitor.Visitor;
 
 public class VisitorImpl implements Visitor {
@@ -32,6 +34,18 @@ public class VisitorImpl implements Visitor {
 	
 	public String result() {
 		return this.result;
+	}
+
+	@Override
+	public void visitReal(RealExpression e) {
+		this.result = e.getFloat()+"";
+		System.out.println(e.getFloat());
+	}
+
+	@Override
+	public void visitString(StringExpression e) {
+		this.result = e.getString()+"";
+		System.out.println(e.toString());
 	}
 
 }
