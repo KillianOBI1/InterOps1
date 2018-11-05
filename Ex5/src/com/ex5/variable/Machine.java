@@ -43,5 +43,9 @@ public class Machine extends VisitorImpl {
 		pExpr.opLeft = pile.pop();
 		return pExpr;
 	}
+	
+	public void addAssociation(VariableDefinition key,ExpressionUnaire value) {
+		this.association.put(key, value);
+	}
 
 }

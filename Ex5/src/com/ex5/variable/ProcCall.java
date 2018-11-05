@@ -1,8 +1,7 @@
 package com.ex5.variable;
 
-public class ProcCall {
-  protected Instruction instruction;
-  
+public class ProcCall extends Instruction{
+
   public ProcCall()  {
 	  super();
   }
