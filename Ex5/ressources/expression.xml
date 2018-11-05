@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <Langage>
-	<VariableDefinition></VariableDefinition>
+	<VariableDefinition name="d" visibility="" type="">
+		<listReference>
+		</listReference>
+	</VariableDefinition>
+	<VariableDefinition name="c" visibility="" type="">
+		<listReference>
+		</listReference>
+	</VariableDefinition>
+	<Affectation>
+	  <IntUnaire value="10"></IntUnaire>
+	  <VariableReference name="" variableDefinition="d" ></VariableReference>
+	</Affectation>
 </Langage>
