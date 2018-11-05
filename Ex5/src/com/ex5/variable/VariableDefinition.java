@@ -10,6 +10,7 @@ public class VariableDefinition {
 	  this.type = type;
 	  this.visibility = visibility;
   }
+  
   public VariableDefinition() {
 	  super();
   }
