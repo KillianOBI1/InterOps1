@@ -9,8 +9,23 @@
 		</listReference>
 	</VariableDefinition>
 	<Affectation>
-	  <IntUnaire value="10"></IntUnaire>
-	  <VariableReference name="" variableDefinition="d" ></VariableReference>
+	  <IntExpression value="10"></IntExpression>
+	  <VariableReference name="addr1" variableDefinition="d" ></VariableReference>
 	</Affectation>
-	
+	<Affection>
+		<PlusExpression>
+		  <opLeft>
+		    <VariableReference name="addr1" variableDefinition="d"></VariableReference>
+		  </opLeft>
+		  <opRight>
+		    <IntExpression value="3"></IntExpression>
+		  </opRight>
+		</PlusExpression>
+		<VariableReference name="addr3" variableDefinition="c" ></VariableReference>
+	</Affection>
+	<ProcCall instruction="print">
+		<args>
+		  <VariableReference name="addr3" variableDefinition="c" ></VariableReference>
+		</args>
+	</ProcCall>
 </Langage>
