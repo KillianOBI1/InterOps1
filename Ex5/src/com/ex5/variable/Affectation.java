@@ -9,4 +9,21 @@ public class Affectation extends Instruction {
   public Affectation() {
 	  super();
   }
+
+  public Expression getExpression() {
+    return expression;
+  }
+
+  public void setExpression(Expression expression) {
+    this.expression = expression;
+  }
+
+  public VariableReference getVariableReference() {
+    return variableReference;
+  }
+
+  public void setVariableReference(VariableReference variableReference) {
+    this.variableReference = variableReference;
+  }
+  
 }

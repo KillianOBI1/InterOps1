@@ -13,10 +13,12 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import com.ex5.factory.impl.VariableDefintionFactoryImpl;
+import com.ex5.model.unaire.IntExpression;
+import com.ex5.variable.Affectation;
 import com.ex5.variable.Machine;
 import com.ex5.variable.UnresolvedSymbol;
 import com.ex5.variable.VariableDefinition;
+import com.sun.org.apache.xalan.internal.xsltc.compiler.util.NodeType;
 
 public class DOMParser {
 	protected static DocumentBuilder builder;
@@ -40,13 +42,14 @@ public class DOMParser {
 				if(langage.item(i).getNodeType() == Node.ELEMENT_NODE) {
 					switch(langage.item(i).getNodeName()) {
 					  case "VariableDefinition":
-					    VariableDefinition variableDefition = VariableDefintionFactoryImpl.createVariableDefinition((Element)(langage.item(i)));
-					    machine.addAssociation(variableDefition, new UnresolvedSymbol());
+					    VariableDefinition variableDefinition = createVariableDefinition((Element)(langage.item(i)));
+					    machine.addAssociation(variableDefinition, new UnresolvedSymbol());
 					    //TODO stack
 						  break;
 					  case "Affectation":
 					    //TODO stack ref then value update ref in appropiate variableDef
-					    System.out.println("affec");
+					    Element elementAffectation = (Element)(langage.item(i));
+					    Affectation affectation = new Affectation();
 					    break;
 					  case "ProcCall":
 					    //TODO think about it
@@ -65,4 +68,39 @@ public class DOMParser {
 	     
 
 	}
+	
+	private static VariableDefinition createVariableDefinition(Element e) {
+    VariableDefinition variableDefinition = new VariableDefinition();
+    variableDefinition.setName(e.getAttribute("name"));
+    variableDefinition.setVisibility(e.getAttribute("visibility"));
+    variableDefinition.setType(e.getAttribute("type"));
+    return variableDefinition;
+  }
+	
+	 public static Affectation CreateAffectation(Element e) {
+	    Affectation affectation = new Affectation();
+	    NodeList nodes = e.getChildNodes();
+	    for(int i = 0; i < nodes.getLength();i++) {
+	      if(nodes.item(i) == NodeType.Element) {
+	        Element subElement = (Element)(nodes.item(i));
+	        switch(subElement.getNodeName()) {
+	          case "IntExpression":
+	            IntExpression intExpr = new IntExpression();
+	            intExpr.setInt((Integer.parseInt(subElement.getTextContent())));
+	            affectation.setExpression(intExpr);
+	            break;
+	          case "PlusExpression":
+	            
+	            break;
+	          case "VariableReference":
+	            break;
+	          default:
+	            System.err.println("bad node");
+	            break;
+	        }
+	        
+	      }
+	    }
+	    return null;
+	  }
 }
