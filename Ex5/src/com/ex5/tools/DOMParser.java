@@ -13,7 +13,7 @@ import org.xml.sax.SAXException;
 public class DOMParser {
 	protected static DocumentBuilder builder;
 	protected static File file;
-	static String FILE_LOCATION = "ressources/input.xml";
+	static String FILE_LOCATION = "ressources/expression.xml";
 
 	public DOMParser() {
 		file = new File(FILE_LOCATION);
