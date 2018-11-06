@@ -44,6 +44,7 @@ public class Machine extends VisitorImpl {
 	public void addExprToPile(Expression expression) {
 	  pile.push(expression);
 	  System.out.println("push");
+	  System.out.println(expression);
 	}
 	
 	public void addToListDef(VariableDefinition variableDefinition) {

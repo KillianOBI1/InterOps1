@@ -83,12 +83,13 @@ public class DOMParser {
 	    Affectation affectation = new Affectation();
 	    NodeList nodes = e.getChildNodes();
 	    for(int i = 0; i < nodes.getLength();i++) {
-	      if(nodes.item(i) == NodeType.Element) {
+	      if(nodes.item(i).getNodeType() == Node.ELEMENT_NODE) {
 	        Element subElement = (Element)(nodes.item(i));
 	        switch(subElement.getNodeName()) {
 	          case "IntExpression":
 	            IntExpression intExpr = new IntExpression();
-	            intExpr.setInt((Integer.parseInt(subElement.getTextContent())));
+	            intExpr.setInt((Integer.parseInt(subElement.getAttribute("value"))));
+	            System.out.println(intExpr.getInt());
 	            affectation.setExpression(intExpr);
 	            break;
 	          case "PlusExpression":
