@@ -47,5 +47,9 @@ public class Machine extends VisitorImpl {
 	public void addAssociation(VariableDefinition key,ExpressionUnaire value) {
 		this.association.put(key, value);
 	}
+	
+	public void addExprToPile(ExpressionUnaire expressionUnaire) {
+	  pile.push(expressionUnaire);
+	}
 
 }

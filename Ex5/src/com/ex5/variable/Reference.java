@@ -1,5 +1,7 @@
 package com.ex5.variable;
 
-public abstract class Reference {
+import com.ex5.model.unaire.ExpressionUnaire;
+
+public abstract class Reference extends ExpressionUnaire {
   public String name;
 }
