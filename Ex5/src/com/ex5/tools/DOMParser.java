@@ -18,6 +18,7 @@ import com.ex5.variable.Affectation;
 import com.ex5.variable.Machine;
 import com.ex5.variable.UnresolvedSymbol;
 import com.ex5.variable.VariableDefinition;
+import com.ex5.variable.VariableReference;
 import com.sun.org.apache.xalan.internal.xsltc.compiler.util.NodeType;
 
 public class DOMParser {
@@ -93,6 +94,9 @@ public class DOMParser {
 	            
 	            break;
 	          case "VariableReference":
+	            VariableReference variableReference = new VariableReference();
+	            variableReference.name = subElement.getAttribute("name");
+	            variableReference.setDefinition();
 	            break;
 	          default:
 	            System.err.println("bad node");
