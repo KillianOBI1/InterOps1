@@ -11,6 +11,7 @@ class TestDom {
 	@Test
 	void test() {
 		DOMParser.readXml();
+		DOMParser.machine.popAll();
 		assertTrue(true);
 	}
 
