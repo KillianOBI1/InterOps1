@@ -12,7 +12,7 @@
 	  <IntExpression value="10"></IntExpression>
 	  <VariableReference name="addr1" variableDefinition="d" ></VariableReference>
 	</Affectation>
-	<Affection>
+	<Affectation>
 		<PlusExpression>
 		  <opLeft>
 		    <VariableReference name="addr1" variableDefinition="d"></VariableReference>
@@ -22,7 +22,7 @@
 		  </opRight>
 		</PlusExpression>
 		<VariableReference name="addr3" variableDefinition="c" ></VariableReference>
-	</Affection>
+	</Affectation>
 	<ProcCall instruction="print">
 		<args>
 		  <VariableReference name="addr3" variableDefinition="c" ></VariableReference>

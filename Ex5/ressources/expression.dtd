@@ -1,6 +1,6 @@
 <!DOCTYPE Gestionnaire SYSTEM "expression.dtd">
 <!DOCTYPE Langage [
-<!ELEMENT Langage (VariableDefinition* | Affectation* | ProcCall*)>
+<!ELEMENT Langage (VariableDefinition*,Affectation*,ProcCall*)>
 <!ELEMENT VariableDefinition (listReference*)>
 	<!ATTLIST VariableDefinition 
 		name CDATA #REQUIRED
@@ -9,7 +9,7 @@
 	>
 <!ELEMENT listReference (VariableReference*)>
 <!ELEMENT VariableReference (#PCDATA) >
-	<!ATTLIST listReference 
+	<!ATTLIST VariableReference 
 		name CDATA #REQUIRED
 		variableDefinition CDATA #REQUIRED
 	>
@@ -20,12 +20,12 @@
 		value CDATA #REQUIRED
 	>
 	
-<!ELEMENT  PlusExpression (OpLeft,OpRight)>
-<!ELEMENT OpLeft ((IntExpression | PlusExpression),VariableReference) >
-<!ELEMENT OpRight ((IntExpression | PlusExpression),VariableReference) >
+<!ELEMENT  PlusExpression (opLeft,opRight)>
+<!ELEMENT opLeft (IntExpression | PlusExpression | VariableReference) >
+<!ELEMENT opRight (IntExpression | PlusExpression | VariableReference) >
 <!ELEMENT ProcCall (args*) >
 	<!ATTLIST ProcCall 
 		instruction CDATA #REQUIRED
 	>
-<!ELEMENT args ((IntExpression | PlusExpression),VariableReference)>
+<!ELEMENT args (IntExpression | PlusExpression | VariableReference)>
 ]>
