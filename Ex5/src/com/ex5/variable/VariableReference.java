@@ -1,5 +1,7 @@
 package com.ex5.variable;
 
+import com.ex5.visitor.Visitor;
+
 public class VariableReference extends Reference {
   protected VariableDefinition variableDefinition;
   
@@ -18,5 +20,11 @@ public class VariableReference extends Reference {
   
   public VariableDefinition getVariableDefinition() {
 	return this.variableDefinition;
+  }
+
+  @Override
+  public void accept(Visitor v) {
+    // TODO Auto-generated method stub
+    
   }
 }

@@ -42,11 +42,14 @@ public class DOMParser {
 					  case "VariableDefinition":
 					    VariableDefinition variableDefition = VariableDefintionFactoryImpl.createVariableDefinition((Element)(langage.item(i)));
 					    machine.addAssociation(variableDefition, new UnresolvedSymbol());
+					    //TODO stack
 						  break;
 					  case "Affectation":
+					    //TODO stack ref then value update ref in appropiate variableDef
 					    System.out.println("affec");
 					    break;
 					  case "ProcCall":
+					    //TODO think about it
 					    System.out.println("ProcCall");
 					    break;
 					  default :
