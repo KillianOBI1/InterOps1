@@ -19,12 +19,15 @@ public class VariableReference extends Reference {
   }
   
   public VariableDefinition getVariableDefinition() {
-	return this.variableDefinition;
+	  return this.variableDefinition;
   }
 
   @Override
   public void accept(Visitor v) {
-    // TODO Auto-generated method stub
-    
+    v.visitReference(this);
+  }
+  
+  public String toString() {
+    return "VariableRef name: "+this.name+" VariableDef :"+this.variableDefinition.toString();
   }
 }

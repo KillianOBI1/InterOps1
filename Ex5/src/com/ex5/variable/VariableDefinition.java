@@ -18,6 +18,7 @@ public class VariableDefinition {
   
   public VariableDefinition() {
 	  super();
+	  this.listReference = new ArrayList<VariableReference>();
   }
 
   public String getName() {
@@ -50,5 +51,9 @@ public class VariableDefinition {
 
   public void addListReference(VariableReference variableReference) {
     this.listReference.add(variableReference);
+  }
+  
+  public String toString() {
+    return "VariableDef visibility visibility: "+this.visibility+" type: "+this.type+" name: "+this.getName();
   }
 }

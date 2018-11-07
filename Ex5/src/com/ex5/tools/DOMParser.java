@@ -89,7 +89,6 @@ public class DOMParser {
 	          case "IntExpression":
 	            IntExpression intExpr = new IntExpression();
 	            intExpr.setInt((Integer.parseInt(subElement.getAttribute("value"))));
-	            System.out.println(intExpr.getInt());
 	            affectation.setExpression(intExpr);
 	            break;
 	          case "PlusExpression":
@@ -115,7 +114,16 @@ public class DOMParser {
 	 
 	 public static PlusExpression CreatePlusExpr(Element e) {
 	   PlusExpression plusExpression = new PlusExpression();
-	   Element opLeft = (Element) e.getElementsByTagName("opLeft");
+	   NodeList nodes =  e.getChildNodes();
+	   Element opLeft=null;
+	   Element opRight=null;
+	   for(int i = 0 ; i<nodes.getLength();i++) {
+	     if(nodes.item(i).getNodeName().equals("opLeft")) {
+	       opLeft =(Element)(nodes.item(i));
+	     } else if (nodes.item(i).getNodeName().equals("opRight")) {
+	       opRight =(Element)(nodes.item(i));
+	     }
+	   }
 	   //TODO OPTIMIZE
 	   for(int i = 0; i<opLeft.getChildNodes().getLength();i++) {
 	     if(opLeft.getChildNodes().item(i).getNodeType() == Node.ELEMENT_NODE) {
@@ -123,7 +131,7 @@ public class DOMParser {
 	       switch(subElement.getNodeName()) {
 	         case "IntExpression":
 	           IntExpression intExpr = new IntExpression();
-             intExpr.setInt((Integer.parseInt(subElement.getTextContent())));
+             intExpr.setInt((Integer.parseInt(subElement.getAttribute("value"))));
              plusExpression.opLeft = intExpr;
 	           break;
 	         case "VariableReference":
@@ -143,14 +151,13 @@ public class DOMParser {
 	       }
 	     }
 	   }
-	   Element opRight = (Element) e.getElementsByTagName("opRight");
 	   for(int i = 0; i<opRight.getChildNodes().getLength();i++) {
        if(opRight.getChildNodes().item(i).getNodeType() == Node.ELEMENT_NODE) {
          Element subElement = (Element)(opRight.getChildNodes().item(i));
          switch(subElement.getNodeName()) {
            case "IntExpression":
              IntExpression intExpr = new IntExpression();
-             intExpr.setInt((Integer.parseInt(subElement.getTextContent())));
+             intExpr.setInt((Integer.parseInt(subElement.getAttribute("value"))));
              plusExpression.opRight = intExpr;
              break;
            case "VariableReference":

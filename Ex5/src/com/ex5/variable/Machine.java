@@ -27,13 +27,11 @@ public class Machine extends VisitorImpl {
 	public void addMultToPile(MultExpression mExpr) {
 		pile.push(mExpr.opLeft);
 		pile.push(mExpr.opRight);
-		System.out.println("push");
 	}
 	
 	public void addPlusToPile(PlusExpression pExpr) {
 		pile.push(pExpr.opLeft);
 		pile.push(pExpr.opRight);
-		System.out.println("push");
 	}
 	
 	public void addAssociation(VariableDefinition key,ExpressionUnaire value) {
@@ -43,8 +41,6 @@ public class Machine extends VisitorImpl {
 	
 	public void addExprToPile(Expression expression) {
 	  pile.push(expression);
-	  System.out.println("push");
-	  System.out.println(expression);
 	}
 	
 	public void addToListDef(VariableDefinition variableDefinition) {
@@ -61,9 +57,9 @@ public class Machine extends VisitorImpl {
 	}
 	
 	public void popAll() {
-	  for(int i = 0; i < this.pile.capacity(); i++) {
-	    Expression expr = this.pile.pop();
-	    expr.accept(this);
+	  while(!this.pile.empty()) {
+	     Expression expr = this.pile.pop();
+	      expr.accept(this);
 	  }
 	}
 	

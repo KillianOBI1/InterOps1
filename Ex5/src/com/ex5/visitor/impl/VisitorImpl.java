@@ -5,6 +5,7 @@ import com.ex5.model.binaire.PlusExpression;
 import com.ex5.model.unaire.IntExpression;
 import com.ex5.model.unaire.RealExpression;
 import com.ex5.model.unaire.StringExpression;
+import com.ex5.variable.VariableReference;
 import com.ex5.visitor.Visitor;
 
 public class VisitorImpl implements Visitor {
@@ -28,7 +29,7 @@ public class VisitorImpl implements Visitor {
 
 	@Override
 	public void visitPlus(PlusExpression e) {
-		this.result = (((IntExpression) e.opLeft).getInt() + ((IntExpression) e.opRight).getInt())+"";
+		this.result = (e.opLeft.toString() + e.opRight.toString());
 		System.out.println(e.toString());
 	}
 	
@@ -47,5 +48,11 @@ public class VisitorImpl implements Visitor {
 		this.result = e.getString()+"";
 		System.out.println(e.toString());
 	}
+
+  @Override
+  public void visitReference(VariableReference e) {
+    this.result = e.toString();
+    System.out.println(e.toString());
+  }
 
 }
