@@ -6,4 +6,12 @@ public class Instruction {
   public Instruction() {
 	  super();
   }
+
+  public String getInstruction() {
+    return instruction;
+  }
+
+  public void setInstruction(String instruction) {
+    this.instruction = instruction;
+  }
 }

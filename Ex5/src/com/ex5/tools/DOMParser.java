@@ -2,6 +2,8 @@ package com.ex5.tools;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -13,10 +15,13 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import com.ex5.model.Expression;
 import com.ex5.model.binaire.PlusExpression;
 import com.ex5.model.unaire.IntExpression;
 import com.ex5.variable.Affectation;
+import com.ex5.variable.Instruction;
 import com.ex5.variable.Machine;
+import com.ex5.variable.ProcCall;
 import com.ex5.variable.UnresolvedSymbol;
 import com.ex5.variable.VariableDefinition;
 import com.ex5.variable.VariableReference;
@@ -57,10 +62,15 @@ public class DOMParser {
 					    break;
 					  case "ProcCall":
 					    //TODO think about it
-					    System.out.println("ProcCall");
+					    ProcCall procCall = new ProcCall();
+					    String instruction = ((Element) langage.item(i)).getAttribute("instruction");
+					    procCall.setInstruction(instruction);
+					    procCall.setArgs(CreateArg((Element) langage.item(i)));
+					    System.out.print(procCall.getInstruction()+" ");
+					    System.out.println(procCall.getArgs().toString());
 					    break;
 					  default :
-					    System.err.println("Bad node "+langage.item(i).getNodeName());
+					    System.err.println("Bad node "+langage.item(i).getNodeName()+" in readXml");
 					    break;
 					}
 				}
@@ -103,7 +113,7 @@ public class DOMParser {
 	            affectation.setVariableReference(variableReference);
 	            break;
 	          default:
-	            System.err.println("bad node "+ subElement.getNodeName());
+	            System.err.println("bad node "+ subElement.getNodeName()+" in CreateAffectation");
 	            break;
 	        }
 	        
@@ -146,7 +156,7 @@ public class DOMParser {
 	           plusExpression.opLeft = expr;
 	           break;
 	         default:
-	           System.err.println("Bad node"+ subElement.getNodeName());
+	           System.err.println("Bad node"+ subElement.getNodeName()+"in CreatePlusExpr");
 	           break;
 	       }
 	     }
@@ -175,5 +185,43 @@ public class DOMParser {
        }
      }
 	   return plusExpression;
+	 }
+	 
+	 public static List<Expression> CreateArg(Element element) {
+	   List<Expression> args = new ArrayList<Expression>();
+	   NodeList n = element.getChildNodes();
+	   Element e = null;
+	   for(int i = 0 ; i< n.getLength(); i++) {
+	     if(n.item(i).getNodeName().equals("args")) {
+	       e=(Element)(n.item(i));
+	     }
+	   }
+	   for(int i = 0; i < e.getChildNodes().getLength();i++) {
+	     if(e.getChildNodes().item(i).getNodeType() == Node.ELEMENT_NODE) {
+	       Element subElement = (Element) e.getChildNodes().item(i);
+	       switch(subElement.getNodeName()) {
+	       case "IntExpression":
+           IntExpression intExpr = new IntExpression();
+           intExpr.setInt((Integer.parseInt(subElement.getAttribute("value"))));
+           args.add(intExpr);
+           break;
+         case "PlusExpression":
+           PlusExpression plusExpression = CreatePlusExpr(subElement);
+           args.add(plusExpression);
+           break;
+         case "VariableReference":
+           VariableReference variableReference = new VariableReference();
+           variableReference.name = subElement.getAttribute("name");
+           variableReference.setDefinition(machine.getDefFromList(subElement.getAttribute("variableDefinition")));
+           machine.getDefFromList(subElement.getAttribute("variableDefinition")).addListReference(variableReference);
+           args.add(variableReference);
+           break;
+         default:
+           System.err.println("bad node "+ subElement.getNodeName()+" in createArg");
+           break;
+	       }
+	     }
+	   }
+	   return args;
 	 }
 }

@@ -11,4 +11,16 @@ public class ProcCall extends Instruction{
 	  super();
 	  this.args = new ArrayList<Expression>();
   }
+  
+  public void addArgs(Expression e) {
+    this.args.add(e);
+  }
+  
+  public List<Expression> getArgs() {
+    return this.args;
+  }
+  
+  public void setArgs(List<Expression> args) {
+    this.args = args;
+  }
 }
