@@ -5,13 +5,13 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 import com.ex5.tools.DOMParser;
+import com.ex5.variable.Programme;
 
 class TestDom {
 
 	@Test
 	void test() {
-		DOMParser.readXml();
-		DOMParser.machine.popAll();
+		Programme program = DOMParser.readXml();
 		assertTrue(true);
 	}
 

@@ -22,6 +22,7 @@ import com.ex5.variable.Affectation;
 import com.ex5.variable.Instruction;
 import com.ex5.variable.Machine;
 import com.ex5.variable.ProcCall;
+import com.ex5.variable.Programme;
 import com.ex5.variable.UnresolvedSymbol;
 import com.ex5.variable.VariableDefinition;
 import com.ex5.variable.VariableReference;
@@ -37,10 +38,11 @@ public class DOMParser {
 		file = new File(FILE_LOCATION);
 	}
 	
-	public static void readXml() {
+	public static Programme readXml() {
 		file = new File(FILE_LOCATION);
 		final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 	  machine = new Machine();
+	  Programme programme = new Programme("test");
 		try {
 			builder = factory.newDocumentBuilder();
 			final Document document= builder.parse(file);
@@ -52,13 +54,15 @@ public class DOMParser {
 					    VariableDefinition variableDefinition = createVariableDefinition((Element)(langage.item(i)));
 					    machine.addAssociation(variableDefinition, new UnresolvedSymbol());
 					    machine.addToListDef(variableDefinition);
+					    programme.addElement(variableDefinition);
 						  break;
 					  case "Affectation":
 					    //TODO stack ref then value update ref in appropiate variableDef
 					    Element elementAffectation = (Element)(langage.item(i));
 					    Affectation affectation = CreateAffectation(elementAffectation);
-					    machine.addExprToPile(affectation.getExpression());
-					    machine.addExprToPile(affectation.getVariableReference());
+//					    machine.addExprToPile(affectation.getExpression());
+//					    machine.addExprToPile(affectation.getVariableReference());
+					    programme.addElement(affectation);
 					    break;
 					  case "ProcCall":
 					    //TODO think about it
@@ -66,8 +70,7 @@ public class DOMParser {
 					    String instruction = ((Element) langage.item(i)).getAttribute("instruction");
 					    procCall.setInstruction(instruction);
 					    procCall.setArgs(CreateArg((Element) langage.item(i)));
-					    System.out.print(procCall.getInstruction()+" ");
-					    System.out.println(procCall.getArgs().toString());
+              programme.addElement(procCall);
 					    break;
 					  default :
 					    System.err.println("Bad node "+langage.item(i).getNodeName()+" in readXml");
@@ -79,7 +82,8 @@ public class DOMParser {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		machine.revertPile();
+//		machine.revertPile();
+		return programme;
 	}
 	
 	private static VariableDefinition createVariableDefinition(Element e) {

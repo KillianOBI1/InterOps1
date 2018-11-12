@@ -3,7 +3,7 @@ package com.ex5.variable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class VariableDefinition {
+public class VariableDefinition extends Element{
   protected String name;
   protected String type;
   protected String visibility;

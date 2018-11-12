@@ -26,4 +26,8 @@ public class Affectation extends Instruction {
     this.variableReference = variableReference;
   }
   
+  public String toString() {
+    return variableReference.toString()+" := "+expression.toString(); 
+  }
+  
 }

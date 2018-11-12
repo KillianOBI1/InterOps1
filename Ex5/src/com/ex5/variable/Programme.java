@@ -17,8 +17,15 @@ public class Programme implements Visitable{
   
   @Override
   public void accept(Visitor v) {
-    // TODO Auto-generated method stub
     
+  }
+  
+  public void addElement(Element e) {
+    this.elements.add(e);
+  }
+  
+  public List<Element> getElements() {
+    return this.elements;
   }
  
 }

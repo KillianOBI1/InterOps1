@@ -5,6 +5,7 @@ import com.ex5.model.binaire.PlusExpression;
 import com.ex5.model.unaire.IntExpression;
 import com.ex5.model.unaire.RealExpression;
 import com.ex5.model.unaire.StringExpression;
+import com.ex5.variable.Element;
 import com.ex5.variable.VariableReference;
 import com.ex5.visitor.Visitor;
 
@@ -53,6 +54,22 @@ public class VisitorImpl implements Visitor {
   public void visitReference(VariableReference e) {
     this.result = e.toString();
     System.out.println(e.toString());
+  }
+  
+  @Override
+  public void visitElement(Element element) {
+    switch(element.getClass().getName()) {
+    case "VariableDefinition":
+      this.result = element.toString()+"\n";
+      break;
+    case "Affectation":
+      this.result = element.toString()+"\n";
+      break;
+    case "ProcCall":
+      this.result = element.toString()+"\n";
+      break;
+    }
+    System.out.print(this.result);
   }
 
 }
