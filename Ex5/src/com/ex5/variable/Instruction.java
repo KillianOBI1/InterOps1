@@ -1,6 +1,6 @@
 package com.ex5.variable;
 
-public class Instruction {
+public class Instruction extends Element {
   protected String instruction;
   
   public Instruction() {

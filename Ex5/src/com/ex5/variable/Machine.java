@@ -56,9 +56,18 @@ public class Machine extends VisitorImpl {
 	  return null;
 	}
 	
-	public void popAll() {
+	public void revertPile() {
+	  Stack<Expression> tmp = new Stack<Expression>();
 	  while(!this.pile.empty()) {
-	     Expression expr = this.pile.pop();
+	    tmp.push(this.pile.pop());
+   }
+	  this.pile = tmp;
+	}
+	
+	public void popAll() {
+	  Expression last;
+	  while(!this.pile.empty()) {
+	      Expression expr = this.pile.pop();
 	      expr.accept(this);
 	  }
 	}

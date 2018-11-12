@@ -79,6 +79,7 @@ public class DOMParser {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		machine.revertPile();
 	}
 	
 	private static VariableDefinition createVariableDefinition(Element e) {
