@@ -23,7 +23,7 @@ public class IntExpression extends ExpressionUnaire {
 	}
 	@Override
 	public String toString() {
-		return "IntExpression [value=" + value + "]";
+		return ""+this.value;
 	}
 
 }

@@ -41,6 +41,7 @@ public class PlusExpression extends ExpressionBinaire {
 
 		@Override
 		public String toString() {
-			return "PlusExpression [opLeft=" + opLeft + ", opRight=" + opRight + "]";
+		  return this.opLeft.toString()+"+"+this.opRight.toString();
+//			return "PlusExpression [opLeft=" + opLeft + ", opRight=" + opRight + "]";
 		}
 }

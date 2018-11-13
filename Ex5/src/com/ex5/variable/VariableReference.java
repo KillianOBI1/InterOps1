@@ -27,7 +27,9 @@ public class VariableReference extends Reference {
     v.visitReference(this);
   }
   
+  @Override
   public String toString() {
-    return "VariableRef name: "+this.name+" VariableDef :"+this.variableDefinition.toString();
+    return this.variableDefinition.name;
+//    return "VariableRef name: "+this.name+" VariableDef :"+this.variableDefinition.toString();
   }
 }

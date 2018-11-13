@@ -17,7 +17,9 @@ public class Programme implements Visitable{
   
   @Override
   public void accept(Visitor v) {
-    
+    for(Element element : this.elements) {
+      v.visitElement(element);
+    }
   }
   
   public void addElement(Element e) {

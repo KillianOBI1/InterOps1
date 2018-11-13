@@ -23,4 +23,13 @@ public class ProcCall extends Instruction{
   public void setArgs(List<Expression> args) {
     this.args = args;
   }
+  
+  @Override
+  public String toString() {
+    String result= this.instruction+"(";
+    for(Expression arg:this.args) {
+      result+=arg.toString();
+    }
+    return result+")";
+  }
 }
