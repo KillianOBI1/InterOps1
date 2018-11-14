@@ -1,6 +1,7 @@
 package com.ex5.model.binaire;
 
 import com.ex5.model.Expression;
+import com.ex5.model.unaire.ExpressionUnaire;
 import com.ex5.model.unaire.IntExpression;
 import com.ex5.visitor.Visitor;
 
@@ -20,7 +21,7 @@ public class PlusExpression extends ExpressionBinaire {
 				if (opLeft instanceof ExpressionBinaire) {
 					ExpressionBinaire left = (ExpressionBinaire) opLeft;
 					result = this.compute(left.opLeft, left.opRight);
-				} else {
+				} else if(opLeft instanceof ExpressionUnaire) {
 					result = (IntExpression) opLeft;
 				}
 				if (opRight instanceof ExpressionBinaire) {

@@ -26,5 +26,10 @@ class TestComute {
 	    System.out.println(delta.compute(charlie, echo).getInt());
 	    
 	}
+	
+	@Test
+	void test1() {
+	  
+	}
 
 }

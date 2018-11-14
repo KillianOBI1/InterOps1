@@ -19,20 +19,17 @@ import com.ex5.model.Expression;
 import com.ex5.model.binaire.PlusExpression;
 import com.ex5.model.unaire.IntExpression;
 import com.ex5.variable.Affectation;
-import com.ex5.variable.Instruction;
 import com.ex5.variable.Machine;
 import com.ex5.variable.ProcCall;
 import com.ex5.variable.Programme;
 import com.ex5.variable.UnresolvedSymbol;
 import com.ex5.variable.VariableDefinition;
 import com.ex5.variable.VariableReference;
-import com.sun.org.apache.xalan.internal.xsltc.compiler.util.NodeType;
 
 public class DOMParser {
 	protected static DocumentBuilder builder;
 	protected static File file;
 	static String FILE_LOCATION = "ressources/expression.xml";
-	public static Machine machine;
 
 	public DOMParser() {
 		file = new File(FILE_LOCATION);
@@ -41,7 +38,6 @@ public class DOMParser {
 	public static Programme readXml() {
 		file = new File(FILE_LOCATION);
 		final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-	  machine = new Machine();
 	  Programme programme = new Programme("test");
 		try {
 			builder = factory.newDocumentBuilder();
@@ -52,8 +48,8 @@ public class DOMParser {
 					switch(langage.item(i).getNodeName()) {
 					  case "VariableDefinition":
 					    VariableDefinition variableDefinition = createVariableDefinition((Element)(langage.item(i)));
-					    machine.addAssociation(variableDefinition, new UnresolvedSymbol());
-					    machine.addToListDef(variableDefinition);
+//					    machine.addAssociation(variableDefinition, new UnresolvedSymbol());
+//					    machine.addToListDef(variableDefinition);
 					    programme.addElement(variableDefinition);
 						  break;
 					  case "Affectation":
@@ -113,8 +109,9 @@ public class DOMParser {
 	          case "VariableReference":
 	            VariableReference variableReference = new VariableReference();
 	            variableReference.name = subElement.getAttribute("name");
-	            variableReference.setDefinition(machine.getDefFromList(subElement.getAttribute("variableDefinition")));
-	            machine.getDefFromList(subElement.getAttribute("variableDefinition")).addListReference(variableReference);
+	            VariableDefinition variableDefinition = new VariableDefinition();
+	            variableDefinition.setName(subElement.getAttribute("variableDefinition"));
+	            variableReference.setDefinition(variableDefinition);
 	            affectation.setVariableReference(variableReference);
 	            break;
 	          default:
@@ -152,8 +149,9 @@ public class DOMParser {
 	         case "VariableReference":
 	           VariableReference variableReference = new VariableReference();
              variableReference.name = subElement.getAttribute("name");
-             variableReference.setDefinition(machine.getDefFromList(subElement.getAttribute("variableDefinition")));
-             machine.getDefFromList(subElement.getAttribute("variableDefinition")).addListReference(variableReference);
+             VariableDefinition variableDefinition = new VariableDefinition();
+             variableDefinition.setName(subElement.getAttribute("variableDefinition"));
+             variableReference.setDefinition(variableDefinition);
              plusExpression.opLeft = variableReference;
 	           break;
 	         case "PlusExpression":
@@ -178,8 +176,9 @@ public class DOMParser {
            case "VariableReference":
              VariableReference variableReference = new VariableReference();
              variableReference.name = subElement.getAttribute("name");
-             variableReference.setDefinition(machine.getDefFromList(subElement.getAttribute("variableDefinition")));
-             machine.getDefFromList(subElement.getAttribute("variableDefinition")).addListReference(variableReference);
+             VariableDefinition variableDefinition = new VariableDefinition();
+             variableDefinition.setName(subElement.getAttribute("variableDefinition"));
+             variableReference.setDefinition(variableDefinition);
              plusExpression.opRight = variableReference;
              break;
            case "PlusExpression":
@@ -217,8 +216,9 @@ public class DOMParser {
          case "VariableReference":
            VariableReference variableReference = new VariableReference();
            variableReference.name = subElement.getAttribute("name");
-           variableReference.setDefinition(machine.getDefFromList(subElement.getAttribute("variableDefinition")));
-           machine.getDefFromList(subElement.getAttribute("variableDefinition")).addListReference(variableReference);
+           VariableDefinition variableDefinition = new VariableDefinition();
+           variableDefinition.setName(subElement.getAttribute("variableDefinition"));
+           variableReference.setDefinition(variableDefinition);
            args.add(variableReference);
            break;
          default:
