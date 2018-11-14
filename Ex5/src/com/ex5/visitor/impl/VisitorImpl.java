@@ -6,7 +6,7 @@ import com.ex5.model.unaire.IntExpression;
 import com.ex5.model.unaire.RealExpression;
 import com.ex5.model.unaire.StringExpression;
 import com.ex5.variable.Affectation;
-import com.ex5.variable.Element;
+import com.ex5.variable.Statement;
 import com.ex5.variable.VariableReference;
 import com.ex5.visitor.Visitor;
 
@@ -59,7 +59,7 @@ public class VisitorImpl implements Visitor {
   }
   
   @Override
-  public void visitElement(Element element) {
+  public void visitElement(Statement element) {
     switch(element.getClass().getSimpleName()) {
     case "VariableDefinition":
       this.result = element.toString()+"\n";

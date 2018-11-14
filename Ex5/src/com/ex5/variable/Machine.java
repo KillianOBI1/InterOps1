@@ -32,7 +32,7 @@ public class Machine extends VisitorImpl {
 	}
 	
 	 public void initMachine(Programme programme) {
-	   for(Element element : programme.getElements()) {
+	   for(Statement element : programme.getElements()) {
 	     switch(element.getClass().getSimpleName()) {
 	     case "VariableDefinition":
 	       this.addToListDef((VariableDefinition) element);
@@ -83,8 +83,8 @@ public class Machine extends VisitorImpl {
 	  this.pile = tmp;
 	}
 	
-	public void pushList(List<Element> elements) {
-	  for(Element element : elements) {
+	public void pushList(List<Statement> elements) {
+	  for(Statement element : elements) {
 	    switch(element.getClass().getSimpleName()) {
 	    case "Affectation":
 	      this.pile.push(((Affectation)element).variableReference);

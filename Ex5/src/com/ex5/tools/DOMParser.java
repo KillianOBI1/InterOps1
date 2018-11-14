@@ -16,12 +16,14 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import com.ex5.model.Expression;
+import com.ex5.model.binaire.ExpressionBinaire;
 import com.ex5.model.binaire.PlusExpression;
 import com.ex5.model.unaire.IntExpression;
 import com.ex5.variable.Affectation;
 import com.ex5.variable.Machine;
 import com.ex5.variable.ProcCall;
 import com.ex5.variable.Programme;
+import com.ex5.variable.Statement;
 import com.ex5.variable.UnresolvedSymbol;
 import com.ex5.variable.VariableDefinition;
 import com.ex5.variable.VariableReference;
@@ -48,20 +50,14 @@ public class DOMParser {
 					switch(langage.item(i).getNodeName()) {
 					  case "VariableDefinition":
 					    VariableDefinition variableDefinition = createVariableDefinition((Element)(langage.item(i)));
-//					    machine.addAssociation(variableDefinition, new UnresolvedSymbol());
-//					    machine.addToListDef(variableDefinition);
 					    programme.addElement(variableDefinition);
 						  break;
 					  case "Affectation":
-					    //TODO stack ref then value update ref in appropiate variableDef
 					    Element elementAffectation = (Element)(langage.item(i));
 					    Affectation affectation = CreateAffectation(elementAffectation);
-//					    machine.addExprToPile(affectation.getExpression());
-//					    machine.addExprToPile(affectation.getVariableReference());
 					    programme.addElement(affectation);
 					    break;
 					  case "ProcCall":
-					    //TODO think about it
 					    ProcCall procCall = new ProcCall();
 					    String instruction = ((Element) langage.item(i)).getAttribute("instruction");
 					    procCall.setInstruction(instruction);
@@ -78,7 +74,6 @@ public class DOMParser {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-//		machine.revertPile();
 		return programme;
 	}
 	
@@ -96,29 +91,7 @@ public class DOMParser {
 	    for(int i = 0; i < nodes.getLength();i++) {
 	      if(nodes.item(i).getNodeType() == Node.ELEMENT_NODE) {
 	        Element subElement = (Element)(nodes.item(i));
-	        switch(subElement.getNodeName()) {
-	          case "IntExpression":
-	            IntExpression intExpr = new IntExpression();
-	            intExpr.setInt((Integer.parseInt(subElement.getAttribute("value"))));
-	            affectation.setExpression(intExpr);
-	            break;
-	          case "PlusExpression":
-	            PlusExpression plusExpression = CreatePlusExpr(subElement);
-	            affectation.setExpression(plusExpression);
-	            break;
-	          case "VariableReference":
-	            VariableReference variableReference = new VariableReference();
-	            variableReference.name = subElement.getAttribute("name");
-	            VariableDefinition variableDefinition = new VariableDefinition();
-	            variableDefinition.setName(subElement.getAttribute("variableDefinition"));
-	            variableReference.setDefinition(variableDefinition);
-	            affectation.setVariableReference(variableReference);
-	            break;
-	          default:
-	            System.err.println("bad node "+ subElement.getNodeName()+" in CreateAffectation");
-	            break;
-	        }
-	        
+	        buildSubElement(subElement,affectation);
 	      }
 	    }
 	    return affectation;
@@ -140,52 +113,54 @@ public class DOMParser {
 	   for(int i = 0; i<opLeft.getChildNodes().getLength();i++) {
 	     if(opLeft.getChildNodes().item(i).getNodeType() == Node.ELEMENT_NODE) {
 	       Element subElement = (Element)(opLeft.getChildNodes().item(i));
-	       switch(subElement.getNodeName()) {
-	         case "IntExpression":
-	           IntExpression intExpr = new IntExpression();
-             intExpr.setInt((Integer.parseInt(subElement.getAttribute("value"))));
-             plusExpression.opLeft = intExpr;
-	           break;
-	         case "VariableReference":
-	           VariableReference variableReference = new VariableReference();
-             variableReference.name = subElement.getAttribute("name");
-             VariableDefinition variableDefinition = new VariableDefinition();
-             variableDefinition.setName(subElement.getAttribute("variableDefinition"));
-             variableReference.setDefinition(variableDefinition);
-             plusExpression.opLeft = variableReference;
-	           break;
-	         case "PlusExpression":
-	           PlusExpression expr = CreatePlusExpr(subElement);
-	           plusExpression.opLeft = expr;
-	           break;
-	         default:
-	           System.err.println("Bad node"+ subElement.getNodeName()+"in CreatePlusExpr");
-	           break;
-	       }
+//	       switch(subElement.getNodeName()) {
+//	         case "IntExpression":
+//	           IntExpression intExpr = new IntExpression();
+//             intExpr.setInt((Integer.parseInt(subElement.getAttribute("value"))));
+//             plusExpression.opLeft = intExpr;
+//	           break;
+//	         case "VariableReference":
+//	           VariableReference variableReference = new VariableReference();
+//             variableReference.name = subElement.getAttribute("name");
+//             VariableDefinition variableDefinition = new VariableDefinition();
+//             variableDefinition.setName(subElement.getAttribute("variableDefinition"));
+//             variableReference.setDefinition(variableDefinition);
+//             plusExpression.opLeft = variableReference;
+//	           break;
+//	         case "PlusExpression":
+//	           PlusExpression expr = CreatePlusExpr(subElement);
+//	           plusExpression.opLeft = expr;
+//	           break;
+//	         default:
+//	           System.err.println("Bad node"+ subElement.getNodeName()+"in CreatePlusExpr");
+//	           break;
+//	       }
+	       buildSubElement(subElement,plusExpression.opLeft);
 	     }
 	   }
 	   for(int i = 0; i<opRight.getChildNodes().getLength();i++) {
        if(opRight.getChildNodes().item(i).getNodeType() == Node.ELEMENT_NODE) {
          Element subElement = (Element)(opRight.getChildNodes().item(i));
-         switch(subElement.getNodeName()) {
-           case "IntExpression":
-             IntExpression intExpr = new IntExpression();
-             intExpr.setInt((Integer.parseInt(subElement.getAttribute("value"))));
-             plusExpression.opRight = intExpr;
-             break;
-           case "VariableReference":
-             VariableReference variableReference = new VariableReference();
-             variableReference.name = subElement.getAttribute("name");
-             VariableDefinition variableDefinition = new VariableDefinition();
-             variableDefinition.setName(subElement.getAttribute("variableDefinition"));
-             variableReference.setDefinition(variableDefinition);
-             plusExpression.opRight = variableReference;
-             break;
-           case "PlusExpression":
-             PlusExpression expr = CreatePlusExpr(subElement);
-             plusExpression.opRight = expr;
-             break;
-         }
+//         switch(subElement.getNodeName()) {
+//           case "IntExpression":
+//             IntExpression intExpr = new IntExpression();
+//             intExpr.setInt((Integer.parseInt(subElement.getAttribute("value"))));
+//             plusExpression.opRight = intExpr;
+//             break;
+//           case "VariableReference":
+//             VariableReference variableReference = new VariableReference();
+//             variableReference.name = subElement.getAttribute("name");
+//             VariableDefinition variableDefinition = new VariableDefinition();
+//             variableDefinition.setName(subElement.getAttribute("variableDefinition"));
+//             variableReference.setDefinition(variableDefinition);
+//             plusExpression.opRight = variableReference;
+//             break;
+//           case "PlusExpression":
+//             PlusExpression expr = CreatePlusExpr(subElement);
+//             plusExpression.opRight = expr;
+//             break;
+//         }
+         buildSubElement(subElement,plusExpression.opRight);
        }
      }
 	   return plusExpression;
@@ -228,5 +203,44 @@ public class DOMParser {
 	     }
 	   }
 	   return args;
+	 }
+	 
+	 public static void buildSubElement(Element subElement,Statement statement) {
+	   IntExpression intExpr = null;
+	   VariableReference variableReference =null;
+	   PlusExpression plusExpression=null;
+	   switch(subElement.getNodeName()) {
+     case "IntExpression":
+       intExpr = new IntExpression();
+       intExpr.setInt((Integer.parseInt(subElement.getAttribute("value"))));
+//       args.add(intExpr);
+       break;
+     case "PlusExpression":
+       plusExpression = CreatePlusExpr(subElement);
+//       args.add(plusExpression);
+       break;
+     case "VariableReference":
+       variableReference = new VariableReference();
+       variableReference.name = subElement.getAttribute("name");
+       VariableDefinition variableDefinition = new VariableDefinition();
+       variableDefinition.setName(subElement.getAttribute("variableDefinition"));
+       variableReference.setDefinition(variableDefinition);
+//       args.add(variableReference);
+       break;
+     default:
+       System.err.println("bad node "+ subElement.getNodeName()+" in createArg");
+       break;
+     }
+	  
+	   if(statement instanceof Affectation) {
+	     if(intExpr!=null)((Affectation) statement).setExpression(intExpr);
+	     if(plusExpression!=null)((Affectation) statement).setExpression(plusExpression);
+	     if(variableReference!=null)((Affectation) statement).setVariableReference(variableReference);
+	   } else {
+	     if(intExpr!=null) statement = intExpr;
+       if(plusExpression!=null)statement = plusExpression;
+       if(variableReference!=null)statement = variableReference;
+       statement = variableReference;
+	   }
 	 }
 }

@@ -3,6 +3,7 @@ package com.ex5.model.binaire;
 import com.ex5.model.Expression;
 import com.ex5.model.unaire.ExpressionUnaire;
 import com.ex5.model.unaire.IntExpression;
+import com.ex5.variable.UnresolvedSymbol;
 import com.ex5.visitor.Visitor;
 
 public class PlusExpression extends ExpressionBinaire {

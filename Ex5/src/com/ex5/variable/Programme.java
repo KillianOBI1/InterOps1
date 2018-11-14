@@ -7,26 +7,26 @@ import com.ex5.visitor.Visitable;
 import com.ex5.visitor.Visitor;
 
 public class Programme implements Visitable{
-  List<Element> elements;
+  List<Statement> elements;
   String programName;
   
   public Programme(String programName) {
     this.programName = programName;
-    this.elements = new ArrayList<Element>();
+    this.elements = new ArrayList<Statement>();
   }
   
   @Override
   public void accept(Visitor v) {
-    for(Element element : this.elements) {
+    for(Statement element : this.elements) {
       v.visitElement(element);
     }
   }
   
-  public void addElement(Element e) {
+  public void addElement(Statement e) {
     this.elements.add(e);
   }
   
-  public List<Element> getElements() {
+  public List<Statement> getElements() {
     return this.elements;
   }
  
